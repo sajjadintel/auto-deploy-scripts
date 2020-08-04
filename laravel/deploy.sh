@@ -19,13 +19,13 @@ BASE_DIR="" # like /home/admin/web/example.com/
 DEST_FOLDER=$BASE_DIR"public_html"
 STORAGE_FOLDER=$BASE_DIR"storage"
 USER="admin"
-USER_GROUPE="admin"
+USER_GROUP="admin"
 
 PARAMS=" \
  BRANCH=\"$BRANCH\" \
  USER=\"$USER\" \
  GIT_REPO=\"$GIT_REPO\" \
- USER_GROUPE=\"$USER_GROUPE\" \
+ USER_GROUP=\"$USER_GROUP\" \
  BASE_DIR=\"$BASE_DIR\" \
  DEST_FOLDER=\"$DEST_FOLDER\" \
  STORAGE_FOLDER=\"$STORAGE_FOLDER\" \
@@ -97,11 +97,11 @@ ssh -i $SSH_KEY_PATH $SERVER $PARAMS 'bash -i' <<-'ENDSSH'
   php artisan storage:link
 
 
-  chown -R $USER:$USER_GROUPE $(pwd)
+  chown -R $USER:$USER_GROUP $(pwd)
   find $(pwd) -type d -exec chmod 775 {} \;
   find $(pwd) -type f -exec chmod 664 {} \;
 
-  chown -R $USER:$USER_GROUPE $STORAGE_FOLDER
+  chown -R $USER:$USER_GROUP $STORAGE_FOLDER
   find $STORAGE_FOLDER -type d -exec chmod 775 {} \;
   find $STORAGE_FOLDER -type f -exec chmod 664 {} \;
 
